@@ -154,7 +154,7 @@ export async function poll(config: Config): Promise<void> {
 }
 
 function isFailure(run: CheckRun): boolean {
-  if (run.status === 'completed') {
+  if ((run.status === 'completed') || (run.status === "neutral" && run.name === "CodeQL")) {
     // all conclusions besides success or skipped are considered failures
     return run.conclusion !== 'success' && run.conclusion !== 'skipped'
   }
